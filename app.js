@@ -11,7 +11,7 @@ const appRoutes = require('./routes/app');
 const app = express();
 
 // database
-mongoose.connect('mongodb://localhost27017/node-angular');
+mongoose.connect('mongodb://localhost:27017/node-angular');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
