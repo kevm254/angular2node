@@ -15,6 +15,7 @@ import { LogoutComponent } from './auth/logout.component';
 import { routing } from './app.routing';
 import { SignupComponent } from './auth/signup.component';
 import { SigninComponent } from './auth/signin.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,10 @@ import { SigninComponent } from './auth/signin.component';
         LogoutComponent
 
     ],
-    providers: [MessageService],
+    providers: [
+        MessageService,
+        AuthService
+    ],
     imports:  [
         BrowserModule,
         FormsModule,
