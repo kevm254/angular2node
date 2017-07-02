@@ -36,4 +36,8 @@ export class SignupComponent implements OnInit {
             password: new FormControl('', Validators.required)
         });
     }
+
+    get isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
 }
