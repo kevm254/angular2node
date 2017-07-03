@@ -13,7 +13,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 // database
-mongoose.connect('mongodb://localhost:27017/node-angular');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/node-angular');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
