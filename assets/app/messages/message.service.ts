@@ -10,6 +10,8 @@ export class MessageService {
     private messages: Message[];
     messageIsEdit = new EventEmitter<Message>();
 
+    hostUrl: string = 'https://guarded-woodland-59899.herokuapp.com';
+
     constructor(private http: Http, private errorService: ErrorService) {
         this.messages = [];
     }
@@ -20,7 +22,7 @@ export class MessageService {
         let options = new RequestOptions({ headers: headers });
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
 
-        return this.http.post('http://localhost:3000/message/' + token, body, options)
+        return this.http.post(this.hostUrl + '/message/' + token, body, options)
             .map((response: Response) => {
                 const result= response.json();
                 const message =  new Message(result.obj.content, result.obj.user.firstName, result.obj._id, result.obj.user._id);
@@ -35,7 +37,7 @@ export class MessageService {
     }
 
     getMessages(): Observable<Response> {
-        return this.http.get('http://localhost:3000/message')
+        return this.http.get(this.hostUrl + '/message')
             .map((response: Response) => {
                 let messages = response.json().obj;
                 let transformedMessages: Message[] = [];
@@ -58,7 +60,7 @@ export class MessageService {
     deleteMessage(message: Message) {
         this.messages.splice(this.messages.indexOf(message), 1);
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
+        return this.http.delete(this.hostUrl + '/message/' + message.messageId + token)
             .map((response: Response) => response.json())
            .catch((error: Response) => {
                this.errorService.handleError(error.json());
@@ -76,6 +78,6 @@ export class MessageService {
         const options = new RequestOptions({ headers: headers });
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
 
-        return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, options);
+        return this.http.patch(this.hostUrl + '/message/' + message.messageId + token, body, options);
     }
 }
