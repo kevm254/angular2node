@@ -3,13 +3,14 @@ import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Message } from './message.model';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
+import { ErrorService } from '../errors/error.service';
 
 @Injectable()
 export class MessageService {
     private messages: Message[];
     messageIsEdit = new EventEmitter<Message>();
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private errorService: ErrorService) {
         this.messages = [];
     }
 
@@ -28,6 +29,7 @@ export class MessageService {
 
             })
             .catch((error: Response) => {
+                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
             });
     }
@@ -48,6 +50,7 @@ export class MessageService {
                 return transformedMessages;
             })
             .catch((error: Response) => {
+                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
             });
     }
@@ -57,7 +60,10 @@ export class MessageService {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
             .map((response: Response) => response.json())
-            .catch((err: Response) => Observable.throw(err.json()));
+           .catch((error: Response) => {
+               this.errorService.handleError(error.json());
+               return Observable.throw(error.json());
+           });
     }
 
     editMessage(message: Message) {

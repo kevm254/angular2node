@@ -6,6 +6,4 @@ import { Message } from './messages/message.model';
     styleUrls: ['./app.component.css'],
     templateUrl: './app.component.html'
 })
-export class AppComponent {
-
-}
+export class AppComponent {}

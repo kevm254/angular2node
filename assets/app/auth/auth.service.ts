@@ -3,10 +3,11 @@ import { Http, Headers, RequestOptions, Response  } from '@angular/http';
 import { User } from './user.model';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
+import { ErrorService } from '../errors/error.service';
 
 @Injectable()
 export class AuthService {
-    constructor(private http: Http) {
+    constructor(private http: Http, private errorService: ErrorService) {
 
     }
 
@@ -17,7 +18,10 @@ export class AuthService {
 
         return this.http.post('http://localhost:3000/user', body, options)
             .map((response: Response) => response.json())
-            .catch((err: Response) => Observable.throw(err.json()));
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+            });
     }
 
     signin(user: User) {
@@ -27,7 +31,10 @@ export class AuthService {
 
         return this.http.post('http://localhost:3000/user/signin', body,options)
             .map((response: Response) => response.json())
-            .catch((error: Response) => Observable.throw(error.json()));
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+            });
     }
 
     logout() {
