@@ -4,13 +4,14 @@ import { Message } from './message.model';
 import 'rxjs/Rx';
 import { Observable } from "rxjs/Observable";
 import { ErrorService } from '../errors/error.service';
+import { api_url } from './../../config/config';
 
 @Injectable()
 export class MessageService {
     private messages: Message[];
     messageIsEdit = new EventEmitter<Message>();
 
-    hostUrl: string = 'https://guarded-woodland-59899.herokuapp.com';
+    hostUrl: string = api_url;
 
     constructor(private http: Http, private errorService: ErrorService) {
         this.messages = [];

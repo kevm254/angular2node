@@ -1,11 +1,10 @@
 <article class="panel panel-default">
     <div class="panel-body">
+        {{ message.username }} <br>
+
         {{ message.content }}
     </div>
     <footer class="panel-footer">
-        <div class="author">
-            {{ message.username }}
-        </div>
         <div class="config" *ngIf="belongsToUser">
             <a (click)="onEdit()" >Edit</a>
             <a (click)="onDelete()">Delete</a>

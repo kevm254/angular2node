@@ -16,6 +16,8 @@ import { MessageService } from './messages/message.service';
 import { ErrorService } from './errors/error.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from './messages/message.module';
+import { BlogComponent } from './blog/blog.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +25,8 @@ import { MessageModule } from './messages/message.module';
 
         AuthenticationComponent,
         HeaderComponent,
+        HomeComponent,
+        BlogComponent,
 
 
         ErrorComponent
