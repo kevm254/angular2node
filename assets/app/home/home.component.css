@@ -1,0 +1,16 @@
+/* UTILITY */
+.home-section {
+    height: 100vh;
+    background-image: url('./img/websitebackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+}
+
+.header-styling {
+    font-size: 1.8rem;
+    margin-top: 25vh;
+    color: #fff;
+    text-align: center;
+}

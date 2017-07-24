@@ -9,7 +9,7 @@ export const app_routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'messages', component: MessagesComponent },
     { path: 'blog', component: BlogComponent },
-    { path: 'auth', component: AuthenticationComponent, loadChildren: './auth/auth.module#AuthModule' }
+    { path: 'login', component: AuthenticationComponent, loadChildren: './auth/auth.module#AuthModule' }
 ];
 
 export const routing = RouterModule.forRoot(app_routes);

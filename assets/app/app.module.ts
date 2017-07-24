@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 // Declarations
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './auth/authentication.component';
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './navbar/header.component';
 import { routing } from './app.routing';
 import { ErrorComponent } from './errors/error.component';
 
